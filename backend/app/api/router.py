@@ -66,6 +66,7 @@ def pack(body: PackRequest, db: Session = Depends(get_db)):
             bag_index=bag.bag_index,
             weight_kg=round(bag.weight_kg, 3),
             volume_l=round(bag.volume_l, 3),
+            open_reason=bag.open_reason,
         )
         db.add(row)
         db.flush()
@@ -97,6 +98,7 @@ def pack(body: PackRequest, db: Session = Depends(get_db)):
             bag_index=b.bag_index,
             weight_kg=b.weight_kg,
             volume_l=b.volume_l,
+            open_reason=b.open_reason or "",
             items=[
                 BagItemOut(
                     stop_id=i.stop_id,
@@ -124,6 +126,7 @@ def bags(db: Session = Depends(get_db)):
                 bag_index=b.bag_index,
                 weight_kg=b.weight_kg,
                 volume_l=b.volume_l,
+                open_reason=b.open_reason or "",
                 items=[
                     BagItemOut(
                         stop_id=i.stop_id,

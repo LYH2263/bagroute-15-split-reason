@@ -33,6 +33,7 @@ class BagOut(BaseModel):
     bag_index: int
     weight_kg: float
     volume_l: float
+    open_reason: str = ""
     items: list[BagItemOut] = []
     model_config = {"from_attributes": True}
 

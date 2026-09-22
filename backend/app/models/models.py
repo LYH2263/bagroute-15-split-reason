@@ -33,6 +33,8 @@ class PackBag(Base):
     bag_index: Mapped[int] = mapped_column(Integer)
     weight_kg: Mapped[float] = mapped_column(Float)
     volume_l: Mapped[float] = mapped_column(Float)
+    # 首袋为 ""；其余袋记录开袋原因（重量/体积/两者同时再装不下）
+    open_reason: Mapped[str] = mapped_column(String(100), default="")
     created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
     items: Mapped[list["BagItem"]] = relationship(back_populates="bag")
 
