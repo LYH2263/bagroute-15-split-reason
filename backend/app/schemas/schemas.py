@@ -33,6 +33,8 @@ class BagOut(BaseModel):
     bag_index: int
     weight_kg: float
     volume_l: float
+    # 第一袋为 None；其余袋为开袋原因，装袋页与袋明细共用同一字段文案。
+    open_reason: str | None = None
     items: list[BagItemOut] = []
     model_config = {"from_attributes": True}
 
